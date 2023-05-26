@@ -1,0 +1,15 @@
+.search-icon {
+  color: white;
+  font-weight: bold;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  color: white;
+  padding-inline: 16px;
+}
+
+button span {
+  font-weight: bold;
+}
