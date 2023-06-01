@@ -4,23 +4,23 @@ import { SearchContext } from "../../contexts/SearchContext";
 
 const ListView = () => {
   const { t } = useTranslation();
-  const { searchResults } = useContext(SearchContext);
+  const { data, searchResults } = useContext(SearchContext);
 
-  const uniqueItems = Array.from(
-    new Set(
-      searchResults.flatMap((data) =>
-        data.recycling.flatMap((item) =>
-          item.collectedItems.map((collectedItem) =>
-            JSON.stringify({
-              label: collectedItem.label,
-              name: item.name,
-              address: item.address,
-            })
-          )
-        )
-      )
-    )
-  ).map((item) => JSON.parse(item));
+  // const uniqueItems = Array.from(
+  //   new Set(
+  //     searchResults.flatMap((data) =>
+  //       data.recycling.flatMap((item) =>
+  //         item.collectedItems.map((collectedItem) =>
+  //           JSON.stringify({
+  //             label: collectedItem.label,
+  //             name: item.name,
+  //             address: item.address,
+  //           })
+  //         )
+  //       )
+  //     )
+  //   )
+  // ).map((item) => JSON.parse(item));
 
   return (
     <div
@@ -36,43 +36,19 @@ const ListView = () => {
       <div className="container">
         <h6 className="pt-5">{t("List")}</h6>
         <hr />
-        {searchResults.length === 0 ? (
-          <div className="d-inline-flex p-3 bg-light rounded">
-            <p className="p-3 text-muted rounded">{t("ListView")}</p>
-          </div>
-        ) : (
-          searchResults.map((data, index) => (
-            <div key={index}>
-              <h5>
-                {data.post_code} {data.kanton}
-              </h5>
-              {data.recycling.map((item, itemIndex) => (
-                <div key={itemIndex}>
-                  <p>
-                    {item.name} - {item.address}
-                  </p>
-                  <ul>
-                    {uniqueItems.map((uniqueItem, uniqueItemIndex) => {
-                      if (
-                        uniqueItem.name === item.name &&
-                        uniqueItem.address === item.address
-                      ) {
-                        return (
-                          <li key={uniqueItemIndex}>{uniqueItem.label}</li>
-                        );
-                      }
-                      return null;
-                    })}
-                  </ul>
-                  <hr />
-                </div>
-              ))}
-            </div>
-          ))
-        )}
       </div>
+      {searchResults.map((result) => (
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <h6>{result.recyclingCategory.label}</h6>
+              <p>{result.address}</p>
+            </div>
+          </div>
+        </div>
+      ))
+      }
     </div>
-  );
+  )
 };
-
-export default ListView;
+export default ListView;  

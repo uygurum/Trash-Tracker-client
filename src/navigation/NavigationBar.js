@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import logo from "../Trash-tracker.png";
@@ -14,7 +14,8 @@ import Profile from "../components/profile/Profile";
 function NavigationBar() {
   const { t } = useTranslation();
   const { isAuthenticated, user, isLoading } = useAuth0();
-  const [selected, setSelected] = useState(t("Choose material"));
+
+
   if (isLoading) {
     return <div>Loading ...</div>;
   }
@@ -43,7 +44,7 @@ function NavigationBar() {
         </div>
         <div class="col-sm-8 col-md-6 col-lg-4 mx-auto my-auto">
           <RecyclingSearch />
-          <TypesOfMaterials selected={selected} setSelected={setSelected} />
+          <TypesOfMaterials />
         </div>
       </div>
 

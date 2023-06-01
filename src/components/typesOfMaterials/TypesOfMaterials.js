@@ -2,20 +2,26 @@ import React, { useState } from "react";
 import "./typesOfMaterials.css";
 import { options } from "./Options";
 import { useTranslation } from "react-i18next";
+import { useSearch } from "../../contexts/SearchContext";
 
-const TypesOfMaterials = ({ selected, setSelected }) => {
+const TypesOfMaterials = ({ label }) => {
   const { t } = useTranslation();
   const [isActive, setIsActive] = useState(false);
+  const { categoryQuery, setCategoryQuery, veri } = useSearch();
 
+  console.log(label);
   const handleOptionClick = (option) => {
-    setSelected(option);
-    setIsActive(false);
+    // setSelected(option);
+    setCategoryQuery(option.label);
+    setIsActive(false)
+    console.log(option);
   };
 
   return (
     <div className="dropdown">
       <div className="dropdown-btn" onClick={() => setIsActive(!isActive)}>
-        {selected} <span className="fas fa-caret-down" />
+        {categoryQuery}
+        <span className="fas fa-caret-down" />
       </div>
       {isActive && (
         <div className="dropdown-content ">

@@ -8,6 +8,9 @@ import { useTranslation } from "react-i18next";
 import { useSearch } from "../../contexts/SearchContext";
 
 const RecyclingSearch = ({ onSearch }) => {
+  const [search, setSearch] = useState("");
+
+
   const { t } = useTranslation();
   const {
     searchQuery,
@@ -17,8 +20,7 @@ const RecyclingSearch = ({ onSearch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("searchQuery");
-    filterDataByCityAndPostCode(searchQuery);
+    setSearchQuery(search);
   };
 
   return (
@@ -26,9 +28,9 @@ const RecyclingSearch = ({ onSearch }) => {
       <InputGroup onSubmit={() => handleSubmit()} className="mb-3">
         <Form.Control
           type="text"
-          value={searchQuery}
+          value={search}
           onChange={(e) => {
-            setSearchQuery(e.target.value);
+            setSearch(e.target.value);
           }}
           placeholder={t("post code or town")}
           aria-label="Postcode or town"

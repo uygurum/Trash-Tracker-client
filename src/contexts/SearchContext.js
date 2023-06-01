@@ -6,86 +6,74 @@ import React, {
   useCallback,
 } from "react";
 import recycling from "../services/recycling";
+import { useTranslation } from "react-i18next";
 
 export const SearchContext = createContext();
 
 export const SearchProvider = (props) => {
+  const { t } = useTranslation();
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [categoryQuery, setCategoryQuery] = useState(t("Choose material"));
+  const [data, setData] = useState([]);
   const [recyclingData, setRecyclingData] = useState([]);
+  console.log("searchQuery", searchQuery);
+  console.log("categoryQuery", categoryQuery);
 
-  const filterDataByCityAndPostCode = useCallback(
-    (searchValue, categoryQuery) => {
-      const results = recycling.filter(
-        (data) =>
-          data.post_code === searchValue ||
-          data.kanton.toLocaleLowerCase() === searchValue.toLocaleLowerCase()
-      );
-      setSearchResults(results);
-    },
-    [searchResults]
-  );
 
-  function getLabel() {
-    const labelArray = [];
 
-    recycling.forEach((kantonObj) => {
-      kantonObj.recycling.forEach((recyclingObj) => {
-        recyclingObj.collectedItems.forEach((item) => {
-          if (!labelArray.includes(item.label)) {
-            labelArray.push(item.label);
-          }
-        });
-      });
-    });
-    // in labelArray search "glass" object and console.log
-    const results = labelArray.filter((label) => label === "Glass");
+  const veri = (kanton, category) => {
 
-    labelArray.push(results);
-    return results;
-  }
 
-  // Example usage
-  const labels = getLabel();
-  console.log(labels);
-
-  const veri = () => {
     const results = recycling.filter(
-      (data) => data.kanton === "Schaffhausen" && data.post_code === "8200"
+      (data) => data.kanton.toLocaleLowerCase() === kanton.toLocaleLowerCase() || data.post_code === kanton
     );
-    console.log(results);
+    // console.log(results);
     const collectedItems = [];
     results.forEach((result) => {
       result.recycling.forEach((recyclingObj) => {
-        collectedItems.push(recyclingObj);
-        console.log("adress", recyclingObj.address);
+        // collectedItems.push(recyclingObj);
+        // console.log("adress", recyclingObj.address);
         recyclingObj.collectedItems.forEach((item) => {
-          if (item.label === "Glass") {
+          if (item.label === category.toLocaleLowerCase()) {
             collectedItems.push({
               address: recyclingObj.address,
               city: recyclingObj.city,
               latitude: recyclingObj.latitude,
               longitude: recyclingObj.longitude,
-              collectedItems: [item],
+              recyclingCategory: item
             });
           }
         });
+        collectedItems.push(recyclingObj);
       });
     });
+    console.log("collectedItems", collectedItems);
+    setSearchResults(collectedItems);
     return collectedItems;
   };
 
-  const veri2 = veri();
-  console.log("veri2", veri2);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    veri(
+      searchQuery,
+      categoryQuery
+    );
+  }, [
+    searchQuery,
+    categoryQuery
+  ]);
 
+  console.log("data", data);
   const values = {
     searchResults,
     setSearchResults,
     searchQuery,
     setSearchQuery,
-    filterDataByCityAndPostCode,
+    categoryQuery,
+    setCategoryQuery,
+    data,
+    veri,
   };
 
   return (
