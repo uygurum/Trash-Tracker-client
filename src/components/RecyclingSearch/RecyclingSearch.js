@@ -1,34 +1,40 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import "./RecyclingSearch.css";
 import "./RecyclingSearch.css";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import { BsSearch } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
-import { SearchContext } from "../../contexts/SearchContext";
+import { useSearch } from "../../contexts/SearchContext";
 
 const RecyclingSearch = ({ onSearch }) => {
   const { t } = useTranslation();
-  const { searchValue, setSearchValue } = useContext(SearchContext);
+  const {
+    searchQuery,
+    setSearchQuery,
+    filterDataByCityAndPostCode,
+  } = useSearch();
 
-  const handleInputChange = (event) => {
-    setSearchValue(event.target.value);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("searchQuery");
+    filterDataByCityAndPostCode(searchQuery);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onSearch(searchValue);
-  };
   return (
     <>
-      <InputGroup onSubmit={handleSubmit} className="mb-3">
+      <InputGroup onSubmit={() => handleSubmit()} className="mb-3">
         <Form.Control
+          type="text"
+          value={searchQuery}
+          onChange={(e) => {
+            setSearchQuery(e.target.value);
+          }}
           placeholder={t("post code or town")}
-          value={searchValue}
-          onChange={handleInputChange}
           aria-label="Postcode or town"
           aria-describedby="basic-addon2"
         />
-        <button type="submit">
+        <button type="submit" onClick={handleSubmit}>
           <span>
             <BsSearch />
           </span>
