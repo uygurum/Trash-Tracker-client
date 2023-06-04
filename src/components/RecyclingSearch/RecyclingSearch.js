@@ -13,9 +13,7 @@ const RecyclingSearch = ({ onSearch }) => {
 
   const { t } = useTranslation();
   const {
-    searchQuery,
     setSearchQuery,
-    filterDataByCityAndPostCode,
   } = useSearch();
 
   const handleSubmit = (e) => {
