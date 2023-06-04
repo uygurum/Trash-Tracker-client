@@ -18,7 +18,7 @@ const useCheckUser = () => {
         });
         navigate("/dashboard");
       } else {
-        navigate("/welcome");
+        navigate("/map");
       }
     }
   };

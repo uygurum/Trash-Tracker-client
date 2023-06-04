@@ -6,21 +6,21 @@ const ListView = () => {
   const { t } = useTranslation();
   const { data, searchResults } = useContext(SearchContext);
 
-  // const uniqueItems = Array.from(
-  //   new Set(
-  //     searchResults.flatMap((data) =>
-  //       data.recycling.flatMap((item) =>
-  //         item.collectedItems.map((collectedItem) =>
-  //           JSON.stringify({
-  //             label: collectedItem.label,
-  //             name: item.name,
-  //             address: item.address,
-  //           })
-  //         )
-  //       )
-  //     )
-  //   )
-  // ).map((item) => JSON.parse(item));
+  const uniqueItems = Array.from(
+    new Set(
+      searchResults.flatMap((data) =>
+        data.recycling.flatMap((item) =>
+          item.collectedItems.map((collectedItem) =>
+            JSON.stringify({
+              label: collectedItem.label,
+              name: item.name,
+              address: item.address,
+            })
+          )
+        )
+      )
+    )
+  ).map((item) => JSON.parse(item));
 
   return (
     <div
@@ -51,4 +51,6 @@ const ListView = () => {
     </div>
   )
 };
-export default ListView;  
+export default ListView;
+
+
