@@ -30,8 +30,9 @@ const ListView = () => {
               <div class="card-body">
                 <h5 class="card-title">{data.address}</h5>
                 <h6>{data.name}</h6>
-                <p class="card-text">
-                </p>
+                {data.collectedItems.map((item, index) => (
+                  <p class="card-text">{item.label}</p>
+                ))}
                 <ul>
                   <li>
                     <strong>{t("Opening hours")}</strong>

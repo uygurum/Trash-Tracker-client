@@ -39,9 +39,13 @@ export const SearchProvider = (props) => {
             collectedItems.push({
               address: recyclingObj.address,
               city: recyclingObj.city,
+              name: recyclingObj.name,
+              phone: recyclingObj.phone,
+              openingTimes: recyclingObj.openingTimes,
+              postCode: recyclingObj.postCode,
               latitude: recyclingObj.latitude,
               longitude: recyclingObj.longitude,
-              recyclingCategory: item
+              collectedItems: [item],
             });
           }
         });
