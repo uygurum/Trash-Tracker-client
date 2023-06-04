@@ -6,8 +6,7 @@ const ListView = () => {
   const { t } = useTranslation();
   const { searchResults } = useContext(SearchContext);
 
-
-
+  const deneme = 'deneme'
 
 
   return (
