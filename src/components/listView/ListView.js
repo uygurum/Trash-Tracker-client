@@ -4,8 +4,12 @@ import { SearchContext } from "../../contexts/SearchContext";
 
 const ListView = () => {
   const { t } = useTranslation();
-  const { data, searchResults } = useContext(SearchContext);
+  const { searchResults } = useContext(SearchContext);
 
+
+
+
+<<<<<<< HEAD
   const uniqueItems = Array.from(
     new Set(
       searchResults.flatMap((data) =>
@@ -21,6 +25,8 @@ const ListView = () => {
       )
     )
   ).map((item) => JSON.parse(item));
+=======
+>>>>>>> d5476d6bccd42a801f30393b6341d54f79c36fda
 
   return (
     <div
@@ -36,18 +42,32 @@ const ListView = () => {
       <div className="container">
         <h6 className="pt-5">{t("List")}</h6>
         <hr />
-      </div>
-      {searchResults.map((result) => (
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <h6>{result.recyclingCategory.label}</h6>
-              <p>{result.address}</p>
+        <div>
+          {searchResults.map((data, index) => (
+            <div class="card my-2">
+              <h5 class="card-header">{`${data.city} ${data.postCode}`}</h5>
+              <div class="card-body">
+                <h5 class="card-title">{data.address}</h5>
+                <h6>{data.name}</h6>
+                <p class="card-text">
+                </p>
+                <ul>
+                  <li>
+                    <strong>{t("Opening hours")}</strong>
+                    <p>{data.openingTimes}</p>
+                  </li>
+                  <li>
+                    <strong>{t("Phone")}</strong>
+                    <p>{data.phone}</p>
+                  </li>
+                </ul>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
             </div>
-          </div>
+          ))
+          }
         </div>
-      ))
-      }
+      </div>
     </div>
   )
 };

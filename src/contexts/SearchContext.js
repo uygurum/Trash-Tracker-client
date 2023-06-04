@@ -35,7 +35,7 @@ export const SearchProvider = (props) => {
         // collectedItems.push(recyclingObj);
         // console.log("adress", recyclingObj.address);
         recyclingObj.collectedItems.forEach((item) => {
-          if (item.label === category.toLocaleLowerCase()) {
+          if (item.label.toLocaleLowerCase() === category.toLocaleLowerCase()) {
             collectedItems.push({
               address: recyclingObj.address,
               city: recyclingObj.city,
@@ -48,7 +48,7 @@ export const SearchProvider = (props) => {
         collectedItems.push(recyclingObj);
       });
     });
-    console.log("collectedItems", collectedItems);
+    console.log("collectedItems =>", collectedItems);
     setSearchResults(collectedItems);
     return collectedItems;
   };
@@ -64,7 +64,8 @@ export const SearchProvider = (props) => {
     categoryQuery
   ]);
 
-  console.log("data", data);
+  console.log("searchResults =>", searchResults);
+
   const values = {
     searchResults,
     setSearchResults,
