@@ -5,10 +5,11 @@
 .custom-dropdown .dropdown-toggle {
   border-start-start-radius: 0rem;
   border-start-end-radius: 0rem;
+  width: 80px;
   position: absolute;
   top: 0;
   right: 0;
-  float: right;
+  /* float: right; */
   margin-right: 7em;
   background: #28a745;
   border: 1px solid #38864a;

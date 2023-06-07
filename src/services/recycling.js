@@ -8,7 +8,7 @@ const recycling = [
         name: "Migros MM Igelweid 18",
         address: "Igelweid 18",
         postCode: "5000",
-        kanton: "Aarau",
+        city: "Aarau",
         phone: "058 567 53 00",
         openingTimes: "",
         collectedItems: [

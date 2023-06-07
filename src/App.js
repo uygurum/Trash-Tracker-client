@@ -9,6 +9,9 @@ function App() {
       <UserContextProvider>
         <Outlet />
       </UserContextProvider>
+      <p className="text-red-500">
+        asdad
+      </p>
     </div>
   );
 }

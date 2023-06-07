@@ -12,12 +12,12 @@ function LanguageOption() {
   };
 
   return (
-    <div className="parent">
-      <Dropdown className="custom-dropdown">
+    <div className="paren">
+      <Dropdown className="custom-dropdown bg-slate-500">
+        <div className="space"></div>
         <Dropdown.Toggle variant="success" id="dropdown-basic">
           {i18n.language}
         </Dropdown.Toggle>
-
         <Dropdown.Menu>
           <Dropdown.Item onClick={() => clickHandle("DE")}>DE</Dropdown.Item>
           <Dropdown.Item onClick={() => clickHandle("FR")}>FR</Dropdown.Item>

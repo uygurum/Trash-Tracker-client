@@ -7,34 +7,33 @@ import { BsSearch } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 import { useSearch } from "../../contexts/SearchContext";
 
-const RecyclingSearch = ({ onSearch }) => {
+const RecyclingSearch = ({ value, onChange, onClick }) => {
   const [search, setSearch] = useState("");
 
 
   const { t } = useTranslation();
-  const {
-    setSearchQuery,
-  } = useSearch();
+  // const {
+  //   setSearchQuery,
+  // } = useSearch();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSearchQuery(search);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setSearchQuery(search);
+  // };
 
   return (
     <>
-      <InputGroup onSubmit={() => handleSubmit()} className="mb-3">
+      <InputGroup className="mb-3">
+        {/* search on */}
         <Form.Control
           type="text"
-          value={search}
-          onChange={(e) => {
-            setSearch(e.target.value);
-          }}
+          value={value}
+          onChange={onChange}
           placeholder={t("post code or town")}
           aria-label="Postcode or town"
           aria-describedby="basic-addon2"
         />
-        <button type="submit" onClick={handleSubmit}>
+        <button type="submit" onClick={onClick}>
           <span>
             <BsSearch />
           </span>
