@@ -17,31 +17,32 @@ export const SearchProvider = (props) => {
   const [categoryQuery, setCategoryQuery] = useState(t("Choose material"));
   const [data, setData] = useState([]);
   const [recyclingData, setRecyclingData] = useState([]);
+  const [favorites, setFavorites] = useState([]);
   console.log("searchQuery", searchQuery);
   console.log("categoryQuery", categoryQuery);
 
-
-
   const veri = (kanton, category) => {
-
-
     const results = recycling.filter(
-      (data) => data.kanton.toLocaleLowerCase() === kanton.toLocaleLowerCase() || data.post_code === kanton
+      (data) =>
+        data.kanton.toLocaleLowerCase() === kanton.toLocaleLowerCase() ||
+        data.post_code === kanton
     );
-    // console.log(results);
+
     const collectedItems = [];
     results.forEach((result) => {
       result.recycling.forEach((recyclingObj) => {
-        // collectedItems.push(recyclingObj);
-        // console.log("adress", recyclingObj.address);
         recyclingObj.collectedItems.forEach((item) => {
           if (item.label.toLocaleLowerCase() === category.toLocaleLowerCase()) {
             collectedItems.push({
               address: recyclingObj.address,
               city: recyclingObj.city,
+              name: recyclingObj.name,
+              phone: recyclingObj.phone,
+              openingTimes: recyclingObj.openingTimes,
+              postCode: recyclingObj.postCode,
               latitude: recyclingObj.latitude,
               longitude: recyclingObj.longitude,
-              recyclingCategory: item
+              collectedItems: [item],
             });
           }
         });
@@ -53,16 +54,19 @@ export const SearchProvider = (props) => {
     return collectedItems;
   };
 
+  const addToFavorites = (item) => {
+    setFavorites([...favorites, item]);
+  };
+
+  const removeFromFavorites = (index) => {
+    const updatedFavorites = [...favorites];
+    updatedFavorites.splice(index, 1);
+    setFavorites(updatedFavorites);
+  };
 
   useEffect(() => {
-    veri(
-      searchQuery,
-      categoryQuery
-    );
-  }, [
-    searchQuery,
-    categoryQuery
-  ]);
+    veri(searchQuery, categoryQuery);
+  }, [searchQuery, categoryQuery]);
 
   console.log("searchResults =>", searchResults);
 
@@ -75,6 +79,9 @@ export const SearchProvider = (props) => {
     setCategoryQuery,
     data,
     veri,
+    favorites,
+    addToFavorites,
+    removeFromFavorites,
   };
 
   return (

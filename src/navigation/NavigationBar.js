@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import logo from "../Trash-tracker.png";
@@ -9,20 +9,18 @@ import LogoutButton from "../components/logoutButton/LogoutButton";
 import LoginButton from "../components/loginButton/LoginButton";
 import LanguageOption from "../components/languageOption/LanguageOption";
 import { useTranslation } from "react-i18next";
+import ProtectedLink from "../components/protectedLink/ProtectedLink.js";
 import Profile from "../components/profile/Profile";
+import { UserContext } from "../contexts/UserContext";
 
 function NavigationBar() {
   const { t } = useTranslation();
-  const { isAuthenticated, user, isLoading } = useAuth0();
-
-
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
+  const { isAuthenticated, isLoading } = useAuth0();
+  const user = useContext(UserContext);
 
   return (
     <>
-      <div class="d-flex justify-content-end align-items-center">
+      <div className="d-flex justify-content-end align-items-center">
         <LanguageOption />
       </div>
       <div className="container d-flex">
@@ -42,7 +40,7 @@ function NavigationBar() {
             Trash Tracker
           </h3>
         </div>
-        <div class="col-sm-8 col-md-6 col-lg-4 mx-auto my-auto">
+        <div className="col-sm-8 col-md-6 col-lg-4 mx-auto my-auto">
           <RecyclingSearch />
           <TypesOfMaterials />
         </div>
@@ -53,21 +51,56 @@ function NavigationBar() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link as={NavLink} to="/map">
-                {t("Map")}
-              </Nav.Link>
-              <Nav.Link as={NavLink} to="/list">
-                {t("List")}
-              </Nav.Link>
-              <Nav.Link as={NavLink} to="/collectedItems">
-                {t("Collected items")}
-              </Nav.Link>
-              <Nav.Link as={NavLink} to="/favorites">
-                {t("Favorites")}
-              </Nav.Link>
-              <Nav.Link as={NavLink} to="/info">
-                {t("Info")}
-              </Nav.Link>
+              {isLoading ? (
+                <>loading</>
+              ) : isAuthenticated ? (
+                <>
+                  <Nav.Link as={NavLink} to="/dashboard">
+                    {t("Dashboard")}
+                  </Nav.Link>
+
+                  <Nav.Link as={NavLink} to="/map">
+                    {t("Map")}
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/list">
+                    {t("List")}
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/collectedItems">
+                    {t("Collected items")}
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/favorites">
+                    {t("Favorites")}
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/info">
+                    {t("Info")}
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/settings">
+                    Settings
+                  </Nav.Link>
+                </>
+              ) : (
+                <>
+                  <Nav.Link as={NavLink} to="/map">
+                    {t("Map")}
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/list">
+                    {t("List")}
+                  </Nav.Link>
+
+                  <Nav.Link as={NavLink} to="/collectedItems">
+                    {t("Collected items")}
+                  </Nav.Link>
+                  <Nav.Link as={NavLink} to="/info">
+                    {t("Info")}
+                  </Nav.Link>
+                  <ProtectedLink
+                    name="Users"
+                    link="/users"
+                    user={user}
+                    roles={["admin"]}
+                  />
+                </>
+              )}
             </Nav>
 
             <Nav>

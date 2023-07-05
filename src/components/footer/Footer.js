@@ -23,8 +23,9 @@ function Footer() {
                       alt={image.alt}
                       style={{
                         height: "50px",
-                        width: "50px",
                         marginRight: "5px",
+                        objectFit: "contain",
+                        marginBottom: "15px",
                       }}
                     />
                   )}

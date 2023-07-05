@@ -8,7 +8,7 @@ const recycling = [
         name: "Migros MM Igelweid 18",
         address: "Igelweid 18",
         postCode: "5000",
-        kanton: "Aarau",
+        city: "Aarau",
         phone: "058 567 53 00",
         openingTimes: "",
         collectedItems: [
@@ -420,7 +420,7 @@ const recycling = [
         name: "Migros M Bahnhofplatz 3h",
         address: "Bahnhofplatz 3h",
         postCode: "5000",
-        kanton: "Aarau",
+        city: "Aarau",
         phone: "058 567 14 80",
         openingTimes: "",
         collectedItems: [
@@ -832,7 +832,7 @@ const recycling = [
         name: "ALDI Industriestrasse 1 / Gais Center",
         address: "Industriestrasse 1 / Gais Center",
         postCode: "5000",
-        kanton: "Aarau",
+        city:  "Aarau",
         phone: "0800 90 0180",
         openingTimes: "",
         collectedItems: [
@@ -1244,7 +1244,7 @@ const recycling = [
         name: "Coop Bahnhofplatz 3D",
         address: "Bahnhofplatz 3D",
         postCode: "5000",
-        kanton: "Aarau",
+        city: "Aarau",
         openingTimes: "",
         collectedItems: [
           {
@@ -1655,7 +1655,7 @@ const recycling = [
         name: "Coop City Igelweid 10",
         address: "Igelweid 10",
         postCode: "5000",
-        kanton: "Aarau",
+        city: "Aarau",
         openingTimes: "",
         collectedItems: [
           {
@@ -2066,7 +2066,7 @@ const recycling = [
         name: "Trinamo Wässermattstrasse 1",
         address: "Wässermattstrasse 1",
         postCode: "5000",
-        kanton: "Aarau",
+        city: "Aarau",
         phone: "062 834 51 51",
         openingTimes: "08:00 - 17:00",
         collectedItems: [
@@ -2478,7 +2478,7 @@ const recycling = [
         name: "Interdiscount Graben 29",
         address: "Graben 29",
         postCode: "5000",
-        kanton: "Aarau",
+        city: "Aarau",
         openingTimes: "08:00 - 17:00",
         collectedItems: [
           {
@@ -2889,7 +2889,7 @@ const recycling = [
         name: "Fust Obere Vorstadt 3",
         address: "Obere Vorstadt 3",
         postCode: "5000",
-        kanton: "Aarau",
+        city: "Aarau",
         openingTimes: "",
         collectedItems: [
           {
@@ -3300,7 +3300,7 @@ const recycling = [
         name: "Erlinsbacherstrasse",
         address: "Erlinsbacherstrasse",
         postCode: "5000",
-        kanton: "Aarau",
+        city: "Aarau",
         openingTimes: "",
         collectedItems: [
           {
@@ -3711,7 +3711,7 @@ const recycling = [
         name: "Schachenallee (Parkplatz)",
         address: "Schachenallee",
         postCode: "5000",
-        kanton: "Aarau",
+        city: "Aarau",
         openingTimes: "",
         collectedItems: [
           {
@@ -4120,7 +4120,7 @@ const recycling = [
       },
     ],
   },
-  // Appenzel Herisau
+  // Appenzell Ausserrhoden
   {
     kanton: "Appenzell Ausserrhoden",
     post_code: "9100",
@@ -8242,7 +8242,7 @@ const recycling = [
       },
     ],
   },
-  // Appenzell Innerhoben
+  // Appenzell Innerrhoden
   {
     kanton: "Appenzell Innerrhoden",
     post_code: "9050",
@@ -12369,7 +12369,7 @@ const recycling = [
   },
   // Basel
   {
-    kanton: "Basel-Landschaft",
+    kanton: "Basel",
     post_code: "4000",
     recycling: [
       {
@@ -21858,6 +21858,7 @@ const recycling = [
       },
     ],
   },
+  // Thurgau
   {
     kanton: "Thurgau",
     post_code: "8500",
@@ -50283,6 +50284,7 @@ const recycling = [
       },
     ],
   },
+  // Nidwalden
   {
     kanton: "Nidwalden",
     post_code: "6000",
@@ -63053,7 +63055,7 @@ const recycling = [
       },
     ],
   },
-  // Shwyz
+  // Schwyz
   {
     kanton: "Schwyz",
     post_code: "6400",
@@ -71301,7 +71303,7 @@ const recycling = [
         name: "Migros MMM (Neumarkt)",
         address: "St. Leonhardstrasse 35",
         postCode: "9000",
-        kanton: "St.Gallen",
+        city: "St.Gallen",
         phone: "058 712 80 00",
         openingTimes: "Store opening times",
         collectedItems: [
@@ -71713,7 +71715,7 @@ const recycling = [
         name: "Coop Neugasse 48",
         address: "Neugasse 48",
         postCode: "9000",
-        kanton: "St.Gallen",
+        city: "St.Gallen",
         phone: "",
         openingTimes: "",
         collectedItems: [
@@ -72125,7 +72127,7 @@ const recycling = [
         name: "Coop City Am Bohl 6",
         address: "Am Bohl 6",
         postCode: "9000",
-        kanton: "St.Gallen",
+        city: "St.Gallen",
         phone: "",
         openingTimes: "",
         collectedItems: [
@@ -72537,7 +72539,7 @@ const recycling = [
         name: "Sömmerliwaldstrasse / Zwyssigweg Sömmerliwaldstrasse",
         address: "Sömmerliwaldstrasse",
         postCode: "9000",
-        kanton: "St.Gallen",
+        city: "St.Gallen",
         phone: "071 224 51 53",
         openingTimes: "08:00 – 12:00, 13:30 – 18:30",
 
@@ -72950,7 +72952,7 @@ const recycling = [
         name: "Recycling Point 1",
         address: "Brühlgasse 28",
         postCode: "9000",
-        kanton: "St.Gallen",
+        city: "St.Gallen",
         phone: "058 712 55 70",
         openingTimes: "Store opening times",
         collectedItems: ["Item 1", "Item 2", "Item 3"],
@@ -72961,7 +72963,7 @@ const recycling = [
         name: "Recycling Point 2",
         address: "Ullmenstrasse 11",
         postCode: "9000",
-        kanton: "St.Gallen",
+        city: "St.Gallen",
         phone: "058 712 56 40",
         openingTimes: "Store opening times",
         collectedItems: ["Item 4", "Item 5", "Item 6"],
@@ -72972,7 +72974,7 @@ const recycling = [
         name: "Interdiscount Marktgasse 12",
         address: "Marktgasse 12",
         postCode: "9000",
-        kanton: "St.Gallen",
+        city: "St.Gallen",
         openingTimes: "",
         collectedItems: [
           {
@@ -73383,7 +73385,7 @@ const recycling = [
         name: "melectronics (Neumarkt) St. Leonhardstrasse 35",
         address: "St. Leonhardstrasse 35",
         postCode: "9000",
-        kanton: "St.Gallen",
+        city: "St.Gallen",
         phone: "058 712 80 60",
         openingTimes: "",
         collectedItems: [
@@ -73795,7 +73797,7 @@ const recycling = [
         name: "Fust Neumarkt 1",
         address: "Neumarkt 1",
         postCode: "9000",
-        kanton: "St.Gallen",
+        city: "St.Gallen",
         openingTimes: "",
         collectedItems: [
           {
@@ -74206,7 +74208,7 @@ const recycling = [
         name: "Bahnhof Haggen Hechtackerstrasse",
         address: "Hechtackerstrasse",
         postCode: "9000",
-        kanton: "St.Gallen",
+        city: "St.Gallen",
         phone: "071 224 51 53",
         openingTimes: {
           Mon: "08:00 – 12:00, 13:30 – 18:30",
@@ -74623,6 +74625,7 @@ const recycling = [
       },
     ],
   },
+  // Geneva
   {
     kanton: "Geneva",
     post_code: "1200",
@@ -95250,7 +95253,7 @@ const recycling = [
   },
   // Neuchâtel
   {
-    kanton: "Neuchâtel",
+    kanton: "Neuchatel",
     post_code: "2000",
     recycling: [
       {

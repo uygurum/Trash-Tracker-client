@@ -1,16 +1,16 @@
 import React from "react";
 import NavigationBar from "../navigation/NavigationBar";
 import Footer from "../components/footer/Footer";
-import MapView from "../components/mapView/MapView";
+import DashboardView from "../components/dashboardView/DashboardView";
 
-const Map = () => {
+const Dashboard = () => {
   return (
-    <div>
+    <>
       <NavigationBar />
-      <MapView />
+      <DashboardView />
       <Footer />
-    </div>
+    </>
   );
 };
 
-export default Map;
+export default Dashboard;

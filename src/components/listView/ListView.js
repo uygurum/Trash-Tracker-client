@@ -4,29 +4,7 @@ import { SearchContext } from "../../contexts/SearchContext";
 
 const ListView = () => {
   const { t } = useTranslation();
-  const { searchResults } = useContext(SearchContext);
-
-
-
-
-<<<<<<< HEAD
-  const uniqueItems = Array.from(
-    new Set(
-      searchResults.flatMap((data) =>
-        data.recycling.flatMap((item) =>
-          item.collectedItems.map((collectedItem) =>
-            JSON.stringify({
-              label: collectedItem.label,
-              name: item.name,
-              address: item.address,
-            })
-          )
-        )
-      )
-    )
-  ).map((item) => JSON.parse(item));
-=======
->>>>>>> d5476d6bccd42a801f30393b6341d54f79c36fda
+  const { searchResults, addToFavorites } = useContext(SearchContext);
 
   return (
     <div
@@ -43,34 +21,46 @@ const ListView = () => {
         <h6 className="pt-5">{t("List")}</h6>
         <hr />
         <div>
-          {searchResults.map((data, index) => (
-            <div class="card my-2">
-              <h5 class="card-header">{`${data.city} ${data.postCode}`}</h5>
-              <div class="card-body">
-                <h5 class="card-title">{data.address}</h5>
-                <h6>{data.name}</h6>
-                <p class="card-text">
-                </p>
-                <ul>
-                  <li>
-                    <strong>{t("Opening hours")}</strong>
-                    <p>{data.openingTimes}</p>
-                  </li>
-                  <li>
-                    <strong>{t("Phone")}</strong>
-                    <p>{data.phone}</p>
-                  </li>
-                </ul>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+          {searchResults.length > 0 ? (
+            searchResults.map((data, index) => (
+              <div className="card my-2" key={index}>
+                <h5 className="card-header">{`${data.city} ${data.postCode}`}</h5>
+                <div className="card-body">
+                  <h5 className="card-title">{data.address}</h5>
+                  <h6>{data.name}</h6>
+                  {data.collectedItems.map((item, itemIndex) => (
+                    <p className="card-text" key={itemIndex}>
+                      {item.label}{" "}
+                    </p>
+                  ))}
+                  <ul>
+                    <li>
+                      <strong>{t("Opening hours")}</strong>
+                      <p>{data.openingTimes}</p>
+                    </li>
+                    <li>
+                      <strong>{t("Phone")}</strong>
+                      <p>{data.phone}</p>
+                    </li>
+                  </ul>
+                  <button
+                    className="btn btn-primary"
+                    onClick={() => addToFavorites(data)}
+                  >
+                    {t("Add to favorite")}
+                  </button>
+                </div>
               </div>
+            ))
+          ) : (
+            <div className="d-inline-flex p-3 bg-light w-25 rounded">
+              <p className="p-3 text-muted rounded">{t("ListView")}</p>
             </div>
-          ))
-          }
+          )}
         </div>
       </div>
     </div>
-  )
+  );
 };
+
 export default ListView;
-
-

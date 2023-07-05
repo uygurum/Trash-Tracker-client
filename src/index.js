@@ -11,9 +11,14 @@ import List from "./pages/List";
 import CollectedItems from "./pages/CollectedItems";
 import Favorites from "./pages/Favorites";
 import Info from "./pages/Info";
+import Dashboard from "./pages/Dashboard";
 import "./components/languageOption/i18n";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { SearchProvider } from "./contexts/SearchContext";
+import WelcomePage from "./pages/WelcomePage";
+import UserManagement from "./components/userManagement/UserManagement";
+import ProtectedRoute from "./components/protectedRoute/ProtectedRoute";
+import Settings from "./pages/Settings";
 
 const router = createBrowserRouter([
   {
@@ -38,11 +43,47 @@ const router = createBrowserRouter([
       },
       {
         path: "favorites",
-        element: <Favorites />,
+        element: (
+          <ProtectedRoute>
+            <Favorites />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "info",
         element: <Info />,
+      },
+      {
+        path: "settings",
+        element: (
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "dashboard",
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "welcome",
+        element: (
+          <ProtectedRoute>
+            <WelcomePage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "users",
+        element: (
+          <ProtectedRoute>
+            <UserManagement />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

@@ -7,17 +7,29 @@ import TypesOfMaterials from "../components/typesOfMaterials/TypesOfMaterials";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Data from "../services/db";
-
+import { useNavigate } from "react-router-dom";
+import { useSearch } from "../contexts/SearchContext";
 const Home = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [selected, setSelected] = useState(t("Choose material"));
-  const [searchText, setSearchText] = React.useState("");
+  // const [searchText, setSearchText] = React.useState("");
+  const [search, setSearch] = useState("");
 
-  const handleSearch = () => {
-  
-    const searchResult = Data.map((item) => console.log(item.name));
-    return searchResult
-    // Perform further actions with the search result if needed
+  // lang option
+  // input
+  // types of materials
+
+  const { setSearchQuery } = useSearch();
+
+  const handleSubmit = (e) => {
+    if (search === "") {
+      return;
+    } else {
+      e.preventDefault();
+      setSearchQuery(search);
+      navigate("/map");
+    }
   };
 
   return (
@@ -33,9 +45,9 @@ const Home = () => {
           <h1 class="title">Trash Tracker</h1>
           <hr className="border-white border-5" />
           <RecyclingSearch
-            value={searchText}
-            onChange={(e) => setSearchText(e.target.value)}
-            onClick={handleSearch}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            onClick={handleSubmit}
           />
           <TypesOfMaterials selected={selected} setSelected={setSelected} />
           <hr className="border-white border-5" />

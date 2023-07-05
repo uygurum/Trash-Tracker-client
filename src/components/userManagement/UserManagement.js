@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import userService from "../services/userService";
+import React, { useState, useEffect } from "react";
+import userService from "../../services/userSevice";
 
 export default function UserManagement() {
   const [users, setUsers] = useState([]);
